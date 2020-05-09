@@ -152,6 +152,85 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Git-常用命令" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/09/Git-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">Git 常用命令随笔记录</a>
+    </h1>
+  
+
+        
+        <a href="/2020/05/09/Git-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" class="archive-article-date">
+  	<time datetime="2020-05-09T08:25:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="随笔"><a href="#随笔" class="headerlink" title="随笔"></a>随笔</h2><h3 id="创建-repo"><a href="#创建-repo" class="headerlink" title="创建 repo"></a>创建 repo</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git init</span><br></pre></td></tr></table></figure>
+
+<h3 id="查看-repo状态"><a href="#查看-repo状态" class="headerlink" title="查看 repo状态"></a>查看 repo状态</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br></pre></td></tr></table></figure>
+<h3 id="文件增加到缓存区"><a href="#文件增加到缓存区" class="headerlink" title="文件增加到缓存区"></a>文件增加到缓存区</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git add &lt;file&gt; &quot;file(文件名)&quot;</span><br></pre></td></tr></table></figure>
+
+<h3 id="文件从缓存区提交到本地仓库"><a href="#文件从缓存区提交到本地仓库" class="headerlink" title="文件从缓存区提交到本地仓库"></a>文件从缓存区提交到本地仓库</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git commit &lt;file&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="查看本地仓库历史版本记录"><a href="#查看本地仓库历史版本记录" class="headerlink" title="查看本地仓库历史版本记录"></a>查看本地仓库历史版本记录</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git log </span><br><span class="line">git log --prettyoneline</span><br><span class="line">git reflog &lt;推荐&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="调取历史版本"><a href="#调取历史版本" class="headerlink" title="调取历史版本"></a>调取历史版本</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard &lt;hash哈希码&gt;   &#x2F;&#x2F;可前后调取  &lt;推荐&gt;</span><br><span class="line">git reset --hard HEAD^  &#x2F;&#x2F; ^个数调取后面相应的个数 只能调取历史版本</span><br><span class="line">git reset --hard HEAD~n  &#x2F;&#x2F; n(输入回调版本个数)个数调取后面相应的个数 只能调取历史版本</span><br></pre></td></tr></table></figure>
+
+<h3 id="查看当前文件和缓存区文件差异"><a href="#查看当前文件和缓存区文件差异" class="headerlink" title="查看当前文件和缓存区文件差异"></a>查看当前文件和缓存区文件差异</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git diff &lt;file&gt;  &#x2F;&#x2F; &#x2F;HEAD则上一次版本差异</span><br></pre></td></tr></table></figure>
+
+<h3 id="从缓存区移除文件-同时也移除出工作目录"><a href="#从缓存区移除文件-同时也移除出工作目录" class="headerlink" title="从缓存区移除文件,同时也移除出工作目录."></a>从缓存区移除文件,同时也移除出工作目录.</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git rm &lt;file&gt; </span><br><span class="line">rm -rf&#x2F;*  &#x2F;&#x2F;跑路只隔一线代码</span><br></pre></td></tr></table></figure>
+
+<h3 id="分支部分"><a href="#分支部分" class="headerlink" title="分支部分"></a>分支部分</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">git branch &quot;&lt;name&gt;&quot; &#x2F;&#x2F;创建分支</span><br><span class="line"></span><br><span class="line">git branch -v  &#x2F;&#x2F;查看分支</span><br><span class="line"></span><br><span class="line">git branch -d &lt;branch name&gt; &#x2F;&#x2F;删除分支</span><br><span class="line"></span><br><span class="line">git checkout &lt;branch&gt;  &#x2F;&#x2F;切换分支</span><br><span class="line"></span><br><span class="line">git merge &lt;branch&gt;  &#x2F;&#x2F;合并分支</span><br></pre></td></tr></table></figure>
+
+<h3 id="Git-amp-amp-Github-部分"><a href="#Git-amp-amp-Github-部分" class="headerlink" title="Git &amp;&amp; Github 部分"></a>Git &amp;&amp; Github 部分</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">git push origin &lt;branch&gt;  &#x2F;&#x2F;推送分支</span><br><span class="line"></span><br><span class="line">git clone &lt;网页地址&gt;  &#x2F;&#x2F;克隆</span><br><span class="line"></span><br><span class="line">git remote -v  &#x2F;&#x2F;获取网页地址</span><br><span class="line"></span><br><span class="line">git push origin &lt;branch&gt;  &#x2F;&#x2F;上传</span><br><span class="line"></span><br><span class="line">git pull origin &lt;branch&gt;  &#x2F;&#x2F;取回 pull &#x3D; fetch + merge 项目不复杂时 &lt;推荐&gt;</span><br><span class="line"></span><br><span class="line">git fetch origin &lt;branch&gt;  &#x2F;&#x2F;抓取 checkout origin &lt;branch&gt; 查看抓取文件</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/05/09/Git-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
