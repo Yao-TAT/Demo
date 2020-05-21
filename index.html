@@ -152,6 +152,212 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Spring框架IOC随笔记录（伍)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/16/Spring%E6%A1%86%E6%9E%B6IOC%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BC%8D)/">Spring框架IOC随笔记录（伍)</a>
+    </h1>
+  
+
+        
+        <a href="/2020/05/16/Spring%E6%A1%86%E6%9E%B6IOC%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BC%8D)/" class="archive-article-date">
+  	<time datetime="2020-05-16T14:05:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="这章记TM🐎的注解和context扫描部分"><a href="#这章记TM🐎的注解和context扫描部分" class="headerlink" title="这章记TM🐎的注解和context扫描部分"></a>这章记TM🐎的注解和context扫描部分</h3><h3 id="重要文件用xml写-不重要则用注解"><a href="#重要文件用xml写-不重要则用注解" class="headerlink" title="重要文件用xml写 不重要则用注解"></a>重要文件用xml写 不重要则用注解</h3><h3 id="Spring四个注解"><a href="#Spring四个注解" class="headerlink" title="Spring四个注解"></a>Spring四个注解</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">注解分别创建 Dao Service Controller</span><br><span class="line">通过给Bean添加上任何注解都能快速将这个组件加入到ioc容器中</span><br><span class="line">四大注解只能放在类名上</span><br><span class="line">@Controller 控制器 推荐给控制器层加入(Servlet包下)</span><br><span class="line">例：@Repository</span><br><span class="line">    public class BookDao &#123;</span><br><span class="line"></span><br><span class="line">@Service     业务逻辑层的添加 Service</span><br><span class="line">例：@Service</span><br><span class="line">    public class BookService &#123;</span><br><span class="line"></span><br><span class="line">@Repository 数据库层 持久化层 Dao层添加这个</span><br><span class="line">例：@Controller</span><br><span class="line">    public class BookServlet &#123;</span><br><span class="line">@Component  给不属于以上几层的组件</span><br><span class="line"></span><br><span class="line">四大注解头上还可以加：</span><br><span class="line">@Repository(&quot;book&quot;)  设置注解id  id默认值为类名字头字母小写</span><br><span class="line">@Scope(value &#x3D; &quot;prototype&quot;) 设置为多实例 默认为单实例</span><br><span class="line">其实就是把bean里的属性变为了注解 里面属性都一样的</span><br></pre></td></tr></table></figure>
+
+<h3 id="context部分"><a href="#context部分" class="headerlink" title="context部分"></a>context部分</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">注解可以随便乱加</span><br><span class="line">Spring底层不会去检验</span><br><span class="line">但推荐正确加入 方便查看</span><br><span class="line">1.添加注解组件 2.告诉Spring自动扫描 3.一定要导入aop包</span><br><span class="line">base-package&#x3D;&quot;com.spring.mvc&quot; 指定扫描范围</span><br><span class="line">&lt;context:exclude-filter &#x2F;&gt; 指定排除的注解</span><br><span class="line">&lt;context:include-filter &#x2F;&gt;指定不排除的注解</span><br><span class="line">type&#x3D;&quot;annotation&quot;  指定排除某个注解 type&#x3D;&quot;annotation&quot; expression&#x3D;&quot;org.springframework.stereotype.Service&quot;</span><br><span class="line">type&#x3D;&quot;assignable&quot; 指定排除某个类 type&#x3D;&quot;assignable&quot; expression&#x3D;&quot;com.spring.mvc.service.BookService&quot;</span><br><span class="line">use-default-filters&#x3D;&quot;false&quot; 禁用掉默认规则 默认为true 只适用于&lt;context:include-filter &#x2F;&gt;指定不排除的注解</span><br><span class="line">因为扫描是全包扫如果不指定&lt;context:include-filter &#x2F;&gt;等于没啥用</span><br><span class="line"></span><br><span class="line">例：&lt;context:component-scan base-package&#x3D;&quot;com.spring.mvc&quot; use-default-filters&#x3D;&quot;true&quot;&gt;</span><br><span class="line">    &lt;!-- &lt;context:exclude-filter type&#x3D;&quot;annotation&quot; expression&#x3D;&quot;org.springframework.stereotype.Service&quot;&#x2F;&gt;--&gt;</span><br><span class="line">    &lt;!-- &lt;context:include-filter type&#x3D;&quot;annotation&quot; expression&#x3D;&quot;org.springframework.stereotype.Service&quot;&#x2F;&gt;--&gt;</span><br><span class="line">    &lt;&#x2F;context:component-scan&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="哈🗡-IOC到这也算是结束了后面开始AOP随笔记录-✌"><a href="#哈🗡-IOC到这也算是结束了后面开始AOP随笔记录-✌" class="headerlink" title="哈🗡 IOC到这也算是结束了后面开始AOP随笔记录 ✌"></a>哈🗡 IOC到这也算是结束了后面开始AOP随笔记录 ✌</h3>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/05/16/Spring%E6%A1%86%E6%9E%B6IOC%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BC%8D)/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Spring框架IOC随笔记录（肆）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/16/Spring%E6%A1%86%E6%9E%B6IOC%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E8%82%86%EF%BC%89/">Spring框架IOC随笔记录（肆）</a>
+    </h1>
+  
+
+        
+        <a href="/2020/05/16/Spring%E6%A1%86%E6%9E%B6IOC%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E8%82%86%EF%BC%89/" class="archive-article-date">
+  	<time datetime="2020-05-16T13:24:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="自动装配"><a href="#自动装配" class="headerlink" title="自动装配"></a>自动装配</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">bean标签内多了个 autowire&#x3D;&quot;no&quot; 属性</span><br><span class="line">到后面还有注解@Autowire</span><br><span class="line">autowire&#x3D;&quot;default&#x2F;no&quot; 不自动装配 默认</span><br><span class="line">autowire&#x3D;&quot;byName&quot; 按照名字</span><br><span class="line">private Car car以属性名id去容器找到这个组件 如果找不到就是null</span><br><span class="line">ioc.getBean(&quot;car&quot;);</span><br><span class="line">autowire&#x3D;&quot;byType&quot; 以属性的类型作为依据去容器中找到这个组件 如果容器中有多个这种类型的组件就会报错</span><br><span class="line">没找到则就是null</span><br><span class="line">ioc.getBean(&quot;car.class&quot;);</span><br><span class="line">autowire&#x3D;&quot;constructor&quot; 按照构造器进行查找</span><br><span class="line">自动为属性分配  </span><br><span class="line">#&#123;car_01&#125; 是放id的 后面还有$&#123;&#125;这种是放值的</span><br><span class="line"></span><br><span class="line">例：&lt;bean id&#x3D;&quot;person_01&quot; class&#x3D;&quot;com.spring.bean.Person&quot; autowire&#x3D;&quot;no&quot;&gt;</span><br><span class="line">        &lt;property name&#x3D;&quot;car&quot; value&#x3D;&quot;#&#123;car_01&#125;&quot;&gt;&lt;&#x2F;property&gt;</span><br><span class="line">    &lt;&#x2F;bean&gt;</span><br><span class="line"></span><br><span class="line">    &lt;bean id&#x3D;&quot;car_01&quot; class&#x3D;&quot;com.spring.bean.Car&quot;&gt;</span><br><span class="line">        &lt;property name&#x3D;&quot;carName&quot; value&#x3D;&quot;宝马&quot;&gt;&lt;&#x2F;property&gt;</span><br><span class="line">        &lt;property name&#x3D;&quot;color&quot; value&#x3D;&quot;black&quot;&gt;&lt;&#x2F;property&gt;</span><br><span class="line">        &lt;property name&#x3D;&quot;price&quot; value&#x3D;&quot;300000&quot;&gt;&lt;&#x2F;property&gt;</span><br><span class="line">    &lt;&#x2F;bean&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="注解-Autowire"><a href="#注解-Autowire" class="headerlink" title="注解@Autowire"></a>注解@Autowire</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">@Qualifier(&quot;bookService&quot;) 用于修改bean id 默认为类名首字母小写</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;自动装配</span><br><span class="line">&#x2F;&#x2F;    @Qualifier(&quot;bookService&quot;)</span><br><span class="line">&#x2F;&#x2F;    @Autowired(required &#x3D; false)</span><br><span class="line">    @Autowired</span><br><span class="line">    private BookService bookService;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;    private BookDao bd;</span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F;    @Autowired</span><br><span class="line">&#x2F;&#x2F;    public void hahadao(BookDao bookDao,@Qualifier(&quot;bookService&quot;) BookService bookService)&#123;</span><br><span class="line">&#x2F;&#x2F;        System.out.println(&quot;Spring运行了这个方法&quot; + bookDao+&quot; &#x3D;&#x3D;&gt; &quot; + bookService);</span><br><span class="line">&#x2F;&#x2F;    &#125;</span><br><span class="line"></span><br><span class="line">    public void doGet()&#123;</span><br><span class="line">        bookService.sava();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="这章本来是要写连接池-JdbcTemplate的但内容和事务刚好有重合所以丢后面和声明式事务一起了别问问就是懒🐒"><a href="#这章本来是要写连接池-JdbcTemplate的但内容和事务刚好有重合所以丢后面和声明式事务一起了别问问就是懒🐒" class="headerlink" title="这章本来是要写连接池 JdbcTemplate的但内容和事务刚好有重合所以丢后面和声明式事务一起了别问问就是懒🐒"></a>这章本来是要写连接池 JdbcTemplate的但内容和事务刚好有重合所以丢后面和声明式事务一起了别问问就是懒🐒</h3>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/05/16/Spring%E6%A1%86%E6%9E%B6IOC%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E8%82%86%EF%BC%89/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Spring框架IOC随笔记录（叁)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/16/Spring%E6%A1%86%E6%9E%B6IOC%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E5%8F%81)/">Spring框架IOC随笔记录（叁)</a>
+    </h1>
+  
+
+        
+        <a href="/2020/05/16/Spring%E6%A1%86%E6%9E%B6IOC%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E5%8F%81)/" class="archive-article-date">
+  	<time datetime="2020-05-16T11:38:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="bean之间的依赖-只是改变顺序"><a href="#bean之间的依赖-只是改变顺序" class="headerlink" title="bean之间的依赖(只是改变顺序)"></a>bean之间的依赖(只是改变顺序)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">在ioc容器还没实例化创建之前 内部bean的构造方法就早已预先调用了</span><br><span class="line">而预先创建好的构造方法顺序则是ioc xml文件自上而下创建顺序</span><br><span class="line">只要添加这个属性就能改变bean之间的依赖关系从而改变bean的构造方法调用顺序depends-on&#x3D;&quot;person_01,car_01&quot;</span><br><span class="line">使用后的效果则是 person_01,car_01构造方法创建变成book_01前面先创建</span><br><span class="line"></span><br><span class="line">例: &lt;bean id&#x3D;&quot;book_01&quot; class&#x3D;&quot;com.spring.bean.Book&quot; depends-on&#x3D;&quot;person_01,car_01&quot;&gt;&lt;&#x2F;bean&gt;</span><br><span class="line">    &lt;bean id&#x3D;&quot;person_01&quot; class&#x3D;&quot;com.spring.bean.Person&quot;&gt;&lt;&#x2F;bean&gt;</span><br><span class="line">    &lt;bean id&#x3D;&quot;car_01&quot; class&#x3D;&quot;com.spring.bean.Car&quot;&gt;&lt;&#x2F;bean&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="bean单实例和多实例"><a href="#bean单实例和多实例" class="headerlink" title="bean单实例和多实例"></a>bean单实例和多实例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">scope&#x3D;&quot;prototype&quot;:创建多实例 不会自动创建 只有在ioc.getBean(&quot;book_02&quot;)获取的时候才会被创建</span><br><span class="line">例：Object bean_01 &#x3D; ioc.getBean(&quot;book_02&quot;);</span><br><span class="line">scope&#x3D;&quot;singleton&quot;:创建单实例 容器启动前自动创建构造方法</span><br><span class="line">如果没有设置scope属性则默认为单实例</span><br><span class="line"></span><br><span class="line">例：&lt;bean id&#x3D;&quot;book_02&quot; class&#x3D;&quot;com.spring.bean.Book&quot; scope&#x3D;&quot;prototype&quot;&gt;&lt;&#x2F;bean&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">工厂帮我们创建对象： 有一个专门帮我们创建对象的类：这个类就是工厂</span><br><span class="line">    AirPlane ap &#x3D; AirPlaneFactory.getAirPlane(String jzName)</span><br><span class="line">    静态工厂：工厂本身不用创建对象 通过今天工厂调用 工厂类.工厂方法名（）</span><br><span class="line">    实例工厂：工厂本身创建对象 工程类 对象 &#x3D; new 一个工厂类实例对象.getAirPlane(&quot;张三&quot;)</span><br></pre></td></tr></table></figure>
+<h3 id="静态工厂"><a href="#静态工厂" class="headerlink" title="静态工厂"></a>静态工厂</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">静态工厂</span><br><span class="line">class指定静态工厂全类名</span><br><span class="line">factory-method&#x3D;&quot;getAirPlane&quot; 指定那个方法是工厂</span><br><span class="line">constructor-arg：为方法传参</span><br><span class="line"></span><br><span class="line">    例：&lt;bean id&#x3D;&quot;airPlaneStaticFactory_01&quot; class&#x3D;&quot;com.spring.factory.AirPlaneStaticFactory&quot; factory-method&#x3D;&quot;getAirPlane&quot;&gt;</span><br><span class="line">        &lt;constructor-arg name&#x3D;&quot;jzName&quot; value&#x3D;&quot;蔡徐坤&quot;&gt;&lt;&#x2F;constructor-arg&gt;</span><br><span class="line">        &lt;&#x2F;bean&gt;</span><br><span class="line"></span><br><span class="line">        AirPlaneStaticFactory类</span><br><span class="line">        public class AirPlaneStaticFactory &#123;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;静态工厂AirPlaneStaticFactory.getAirPlane</span><br><span class="line">    public static AirPlane getAirPlane(String jzName)&#123;</span><br><span class="line">        System.out.println(&quot;AirPlaneStaticFactory。。。正在造飞机&quot;);</span><br><span class="line">        AirPlane airplane &#x3D; new AirPlane();</span><br><span class="line">        airplane.setFdj(&quot;富士山&quot;);</span><br><span class="line">        airplane.setJzName(jzName);</span><br><span class="line">        airplane.setFjsName(&quot;吴亦凡&quot;);</span><br><span class="line">        airplane.setPersonNum(300);</span><br><span class="line">        airplane.setYc(&quot;198.68m&quot;);</span><br><span class="line">        return airplane;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="实例工厂"><a href="#实例工厂" class="headerlink" title="实例工厂"></a>实例工厂</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">实例工厂</span><br><span class="line">先配置实例化工厂</span><br><span class="line">创建AirPlane使用那个工厂</span><br><span class="line">factory-bean&#x3D;&quot;airPlaneInstanceFactory_01&quot; 指定实例化工厂</span><br><span class="line">factory-method&#x3D;&quot;getAirPlane&quot; 指定工厂方法</span><br><span class="line">constructor-arg：为方法传参</span><br><span class="line"></span><br><span class="line">例：&lt;bean id&#x3D;&quot;airPlaneInstanceFactory_01&quot; class&#x3D;&quot;com.spring.factory.AirPlaneInstanceFactory&quot; &gt;&lt;&#x2F;bean&gt;</span><br><span class="line"></span><br><span class="line">    &lt;bean id&#x3D;&quot;airPlane_01&quot; class&#x3D;&quot;com.spring.bean.AirPlane&quot;</span><br><span class="line">          factory-bean&#x3D;&quot;airPlaneInstanceFactory_01&quot; factory-method&#x3D;&quot;getAirPlane&quot;&gt;</span><br><span class="line">        &lt;constructor-arg name&#x3D;&quot;jzName&quot; value&#x3D;&quot;吴彦祖&quot;&gt;&lt;&#x2F;constructor-arg&gt;</span><br><span class="line">    &lt;&#x2F;bean&gt;</span><br><span class="line"></span><br><span class="line">相比于静态工厂类少了个静态static属性</span><br><span class="line">    public class AirPlaneInstanceFactory &#123;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;实例工厂 new AirPlaneInstanceFactory().getAirPlane</span><br><span class="line">    public  AirPlane getAirPlane(String jzName)&#123;</span><br><span class="line">        System.out.println(&quot;AirPlaneInstanceFactory。。。正在造飞机&quot;);</span><br><span class="line">        AirPlane airplane &#x3D; new AirPlane();</span><br><span class="line">        airplane.setFdj(&quot;富士山&quot;);</span><br><span class="line">        airplane.setJzName(jzName);</span><br><span class="line">        airplane.setFjsName(&quot;吴亦凡&quot;);</span><br><span class="line">        airplane.setPersonNum(300);</span><br><span class="line">        airplane.setYc(&quot;198.68m&quot;);</span><br><span class="line">        return airplane;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">    &lt;!--    生命周期--&gt;</span><br><span class="line">     init-method&#x3D;&quot;myInit&quot;  类初始化时自动创建的测试方法</span><br><span class="line">     destroy-method&#x3D;&quot;myDestory&quot; 关闭释放资源时自动启动的测试方法</span><br><span class="line">     没什么用看看就好</span><br><span class="line">     这两条是重点</span><br><span class="line">     也是ApplicationContext的子类 作用释放资源</span><br><span class="line">    ConfigurableApplicationContext ioc_destory &#x3D; new ClassPathXmlApplicationContext(&quot;applicationContext_03.</span><br><span class="line">    ioc_destory.close();</span><br><span class="line"></span><br><span class="line">例：&lt;bean id&#x3D;&quot;book_init_destory&quot; class&#x3D;&quot;com.spring.bean.Book&quot;</span><br><span class="line">          init-method&#x3D;&quot;myInit&quot; destroy-method&#x3D;&quot;myDestory&quot;&gt;</span><br><span class="line">    &lt;&#x2F;bean&gt;</span><br><span class="line"></span><br><span class="line">        public static void ioctest_03() &#123;</span><br><span class="line">        ApplicationContext ioc &#x3D; new ClassPathXmlApplicationContext(&quot;applicationContext_03.xml&quot;);</span><br><span class="line">        ConfigurableApplicationContext ioc_destory &#x3D; new ClassPathXmlApplicationContext(&quot;applicationContext_03.xml&quot;);</span><br><span class="line">        Object bean_Init_destory_01 &#x3D; ioc.getBean(&quot;book_init_destory&quot;);</span><br><span class="line">        System.out.println(bean_Init_destory_01);</span><br><span class="line"></span><br><span class="line">        ioc_destory.close();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="工厂模式还有种接口类-FactoryBean是Spring的一个接口-太麻烦一般会用到"><a href="#工厂模式还有种接口类-FactoryBean是Spring的一个接口-太麻烦一般会用到" class="headerlink" title="工厂模式还有种接口类 FactoryBean是Spring的一个接口 太麻烦一般会用到"></a>工厂模式还有种接口类 FactoryBean是Spring的一个接口 太麻烦一般会用到</h3>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/05/16/Spring%E6%A1%86%E6%9E%B6IOC%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E5%8F%81)/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Spring框架IOC随笔记录（贰）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     

@@ -6,13 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | Hexo</title>
+  <title>Spring框架IOC随笔记录（伍) | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="这章记TM🐎的注解和context扫描部分重要文件用xml写 不重要则用注解Spring四个注解1234567891011121314151617181920注解分别创建 Dao Service Controller通过给Bean添加上任何注解都能快速将这个组件加入到ioc容器中四大注解只能放在类名上@Controller 控制器 推荐给控制器层加入(Servlet包下)例：@Repositor">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring框架IOC随笔记录（伍)">
+<meta property="og:url" content="http://yoursite.com/2020/05/16/Spring%E6%A1%86%E6%9E%B6IOC%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BC%8D)/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="这章记TM🐎的注解和context扫描部分重要文件用xml写 不重要则用注解Spring四个注解1234567891011121314151617181920注解分别创建 Dao Service Controller通过给Bean添加上任何注解都能快速将这个组件加入到ioc容器中四大注解只能放在类名上@Controller 控制器 推荐给控制器层加入(Servlet包下)例：@Repositor">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-05-16T14:05:01.000Z">
+<meta property="article:modified_time" content="2020-05-16T14:32:23.543Z">
 <meta property="article:author" content="God Father">
 <meta name="twitter:card" content="summary">
   
@@ -150,211 +154,195 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-Spring框架IOC随笔记录（伍)" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      Spring框架IOC随笔记录（伍)
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/16/Spring%E6%A1%86%E6%9E%B6IOC%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BC%8D)/" class="archive-article-date">
+
+        
+        <a href="/2020/05/16/Spring%E6%A1%86%E6%9E%B6IOC%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BC%8D)/" class="archive-article-date">
   	<time datetime="2020-05-16T14:05:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-16</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/16/Spring%E6%A1%86%E6%9E%B6IOC%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BC%8D)/">Spring框架IOC随笔记录（伍)</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="这章记TM🐎的注解和context扫描部分"><a href="#这章记TM🐎的注解和context扫描部分" class="headerlink" title="这章记TM🐎的注解和context扫描部分"></a>这章记TM🐎的注解和context扫描部分</h3><h3 id="重要文件用xml写-不重要则用注解"><a href="#重要文件用xml写-不重要则用注解" class="headerlink" title="重要文件用xml写 不重要则用注解"></a>重要文件用xml写 不重要则用注解</h3><h3 id="Spring四个注解"><a href="#Spring四个注解" class="headerlink" title="Spring四个注解"></a>Spring四个注解</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">注解分别创建 Dao Service Controller</span><br><span class="line">通过给Bean添加上任何注解都能快速将这个组件加入到ioc容器中</span><br><span class="line">四大注解只能放在类名上</span><br><span class="line">@Controller 控制器 推荐给控制器层加入(Servlet包下)</span><br><span class="line">例：@Repository</span><br><span class="line">    public class BookDao &#123;</span><br><span class="line"></span><br><span class="line">@Service     业务逻辑层的添加 Service</span><br><span class="line">例：@Service</span><br><span class="line">    public class BookService &#123;</span><br><span class="line"></span><br><span class="line">@Repository 数据库层 持久化层 Dao层添加这个</span><br><span class="line">例：@Controller</span><br><span class="line">    public class BookServlet &#123;</span><br><span class="line">@Component  给不属于以上几层的组件</span><br><span class="line"></span><br><span class="line">四大注解头上还可以加：</span><br><span class="line">@Repository(&quot;book&quot;)  设置注解id  id默认值为类名字头字母小写</span><br><span class="line">@Scope(value &#x3D; &quot;prototype&quot;) 设置为多实例 默认为单实例</span><br><span class="line">其实就是把bean里的属性变为了注解 里面属性都一样的</span><br></pre></td></tr></table></figure>
 
-        <div class="article-info info-on-right">
-          
-          
+<h3 id="context部分"><a href="#context部分" class="headerlink" title="context部分"></a>context部分</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">注解可以随便乱加</span><br><span class="line">Spring底层不会去检验</span><br><span class="line">但推荐正确加入 方便查看</span><br><span class="line">1.添加注解组件 2.告诉Spring自动扫描 3.一定要导入aop包</span><br><span class="line">base-package&#x3D;&quot;com.spring.mvc&quot; 指定扫描范围</span><br><span class="line">&lt;context:exclude-filter &#x2F;&gt; 指定排除的注解</span><br><span class="line">&lt;context:include-filter &#x2F;&gt;指定不排除的注解</span><br><span class="line">type&#x3D;&quot;annotation&quot;  指定排除某个注解 type&#x3D;&quot;annotation&quot; expression&#x3D;&quot;org.springframework.stereotype.Service&quot;</span><br><span class="line">type&#x3D;&quot;assignable&quot; 指定排除某个类 type&#x3D;&quot;assignable&quot; expression&#x3D;&quot;com.spring.mvc.service.BookService&quot;</span><br><span class="line">use-default-filters&#x3D;&quot;false&quot; 禁用掉默认规则 默认为true 只适用于&lt;context:include-filter &#x2F;&gt;指定不排除的注解</span><br><span class="line">因为扫描是全包扫如果不指定&lt;context:include-filter &#x2F;&gt;等于没啥用</span><br><span class="line"></span><br><span class="line">例：&lt;context:component-scan base-package&#x3D;&quot;com.spring.mvc&quot; use-default-filters&#x3D;&quot;true&quot;&gt;</span><br><span class="line">    &lt;!-- &lt;context:exclude-filter type&#x3D;&quot;annotation&quot; expression&#x3D;&quot;org.springframework.stereotype.Service&quot;&#x2F;&gt;--&gt;</span><br><span class="line">    &lt;!-- &lt;context:include-filter type&#x3D;&quot;annotation&quot; expression&#x3D;&quot;org.springframework.stereotype.Service&quot;&#x2F;&gt;--&gt;</span><br><span class="line">    &lt;&#x2F;context:component-scan&gt;</span><br></pre></td></tr></table></figure>
 
+<h3 id="哈🗡-IOC到这也算是结束了后面开始AOP随笔记录-✌"><a href="#哈🗡-IOC到这也算是结束了后面开始AOP随笔记录-✌" class="headerlink" title="哈🗡 IOC到这也算是结束了后面开始AOP随笔记录 ✌"></a>哈🗡 IOC到这也算是结束了后面开始AOP随笔记录 ✌</h3>
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>多谢大佬<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/godfater.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/05/16/Spring%E6%A1%86%E6%9E%B6IOC%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BC%8D)/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/16/Spring%E6%A1%86%E6%9E%B6IOC%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E8%82%86%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2020-05-16T13:24:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-16</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2020/05/16/Spring%E6%A1%86%E6%9E%B6IOC%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E8%82%86%EF%BC%89/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Spring框架IOC随笔记录（肆）</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/16/Spring%E6%A1%86%E6%9E%B6IOC%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E8%82%86%EF%BC%89/">Spring框架IOC随笔记录（肆）</a>
-    </h1>
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Spring框架IOC随笔记录（伍)" data-title="Spring框架IOC随笔记录（伍)" data-url="http://yoursite.com/2020/05/16/Spring%E6%A1%86%E6%9E%B6IOC%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BC%8D)/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+  
+  
+  
+  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+<script>
+  var cloudTieConfig = {
+    url: "http://yoursite.com/2020/05/16/Spring%E6%A1%86%E6%9E%B6IOC%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BC%8D)/", 
+    sourceId: "Spring框架IOC随笔记录（伍)",
+    productKey: "true",
+    target: "cloud-tie-wrapper"
+  };
+</script>
+<script src="//img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/16/Spring%E6%A1%86%E6%9E%B6IOC%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E5%8F%81)/" class="archive-article-date">
-  	<time datetime="2020-05-16T11:38:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/16/Spring%E6%A1%86%E6%9E%B6IOC%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E5%8F%81)/">Spring框架IOC随笔记录（叁)</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/13/Spring%E6%A1%86%E6%9E%B6IOC%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E8%B4%B0%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2020-05-13T15:10:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/13/Spring%E6%A1%86%E6%9E%B6IOC%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E8%B4%B0%EF%BC%89/">Spring框架IOC随笔记录（贰）</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/13/Spring%E6%A1%86%E6%9E%B6IOC%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E5%A3%B9)/" class="archive-article-date">
-  	<time datetime="2020-05-13T14:15:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/13/Spring%E6%A1%86%E6%9E%B6IOC%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E5%A3%B9)/">Spring框架IOC随笔记录（壹)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/09/Git-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" class="archive-article-date">
-  	<time datetime="2020-05-09T08:25:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/09/Git-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">Git 常用命令随笔记录</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/09/hello-world/" class="archive-article-date">
-  	<time datetime="2020-05-09T03:35:22.904Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/09/hello-world/">Hello World</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -377,8 +365,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
