@@ -6,13 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | Hexo</title>
+  <title>Spring框架AOP随笔记录（陆） | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="这章写AOP注解模式开启注解扫描123456789101112&lt;!--           基于注解AOP步骤        1.开启注解扫描        2。将目标类和切面类加入到ioc容器中 @Component        3.告诉Spring中那个是切面类 @Aspect        4.在切面类中使用五个通知注解 都在何时何地启用        5。开启基于注解的AOP功能-">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring框架AOP随笔记录（陆）">
+<meta property="og:url" content="http://yoursite.com/2020/05/16/Spring%E6%A1%86%E6%9E%B6AOP%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E9%99%86%EF%BC%89/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="这章写AOP注解模式开启注解扫描123456789101112&lt;!--           基于注解AOP步骤        1.开启注解扫描        2。将目标类和切面类加入到ioc容器中 @Component        3.告诉Spring中那个是切面类 @Aspect        4.在切面类中使用五个通知注解 都在何时何地启用        5。开启基于注解的AOP功能-">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-05-16T14:44:58.000Z">
+<meta property="article:modified_time" content="2020-05-21T08:09:01.992Z">
 <meta property="article:author" content="God Father">
 <meta name="twitter:card" content="summary">
   
@@ -150,265 +154,222 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Spring框架AOP随笔记录（陆）" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/21/Spring%E6%A1%86%E6%9E%B6AOP%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E6%9F%92%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2020-05-21T08:10:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-21</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/21/Spring%E6%A1%86%E6%9E%B6AOP%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E6%9F%92%EF%BC%89/">Spring框架AOP随笔记录（柒）</a>
+    <h1 class="article-title" itemprop="name">
+      Spring框架AOP随笔记录（陆）
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/16/Spring%E6%A1%86%E6%9E%B6AOP%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E9%99%86%EF%BC%89/" class="archive-article-date">
+        
+        <a href="/2020/05/16/Spring%E6%A1%86%E6%9E%B6AOP%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E9%99%86%EF%BC%89/" class="archive-article-date">
   	<time datetime="2020-05-16T14:44:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-16</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/16/Spring%E6%A1%86%E6%9E%B6AOP%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E9%99%86%EF%BC%89/">Spring框架AOP随笔记录（陆）</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="这章写AOP注解模式"><a href="#这章写AOP注解模式" class="headerlink" title="这章写AOP注解模式"></a>这章写AOP注解模式</h3><h3 id="开启注解扫描"><a href="#开启注解扫描" class="headerlink" title="开启注解扫描"></a>开启注解扫描</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--   </span><br><span class="line">        基于注解AOP步骤</span><br><span class="line">        1.开启注解扫描</span><br><span class="line">        2。将目标类和切面类加入到ioc容器中 @Component</span><br><span class="line">        3.告诉Spring中那个是切面类 @Aspect</span><br><span class="line">        4.在切面类中使用五个通知注解 都在何时何地启用</span><br><span class="line">        5。开启基于注解的AOP功能</span><br><span class="line">--&gt;</span><br><span class="line">&lt;!--    开启注解扫描--&gt;</span><br><span class="line">&lt;context:component-scan base-package&#x3D;&quot;cn.springaop&quot;&gt;&lt;&#x2F;context:component-scan&gt;</span><br><span class="line">&lt;!--    开启基于注解的AOP功能--&gt;</span><br><span class="line">&lt;aop:aspectj-autoproxy&gt;&lt;&#x2F;aop:aspectj-autoproxy&gt;</span><br></pre></td></tr></table></figure>
 
-        <div class="article-info info-on-right">
-          
-          
+<h3 id="如何将这个类（切面类）-中的这些方法-通知方法-动态在目标方法运行的各个位置切入"><a href="#如何将这个类（切面类）-中的这些方法-通知方法-动态在目标方法运行的各个位置切入" class="headerlink" title="如何将这个类（切面类） 中的这些方法(通知方法) 动态在目标方法运行的各个位置切入"></a>如何将这个类（切面类） 中的这些方法(通知方法) 动态在目标方法运行的各个位置切入</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">先加入@Component其他组件注解 让这个类进入ioc容器</span><br><span class="line">随后加上@Aspect注解设置为切面类 二者缺一不可</span><br><span class="line">@Aspect</span><br><span class="line">@Component</span><br><span class="line">public class LogUtils &#123;</span><br></pre></td></tr></table></figure>
 
+<h3 id="五大通知注解"><a href="#五大通知注解" class="headerlink" title="五大通知注解"></a>五大通知注解</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">告诉Spring这些方法都在什么时候运行</span><br><span class="line">* @Befor 在目标运行之前执行                  前置通知</span><br><span class="line">* @After 在目标方法运行之后                  后置通知</span><br><span class="line">* @AfterReturning 在目标方法正常返回之后      返回通知</span><br><span class="line">* @AfterThrowing 在目标方法抛出异常之后       异常通知</span><br><span class="line">* @Around 环绕注解                          环绕通知</span><br></pre></td></tr></table></figure>
+
+<h3 id="通知注解内部属性-execution"><a href="#通知注解内部属性-execution" class="headerlink" title="通知注解内部属性 execution"></a>通知注解内部属性 execution</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">execution 用于指定通知插入那个类内的那个方法</span><br><span class="line">例：@Pointcut(&quot;execution(public int cn.springaop.imple.MyMathCalculator.*(int,int))&quot;)</span><br><span class="line"></span><br><span class="line">1.public 可写可不写 默认都是public</span><br><span class="line">  int 返回值类型可以为写为 *</span><br><span class="line">例:@Pointcut(&quot;execution(* cn.springaop.imple.MyMathCalculator.*(int,int))&quot;)</span><br><span class="line"></span><br><span class="line">2.通配符 * 只能匹配一层</span><br><span class="line">  ..  可以匹配多层路径</span><br><span class="line">例: @Pointcut(&quot;execution(* cn.springaop..MyMathCalculator.*(..))&quot;)</span><br><span class="line"></span><br><span class="line">3.指定类的方法可以用*表示方法参数类型也可以用(..)表示</span><br><span class="line">例: @Pointcut(&quot;execution(* cn.springaop..MyMathCalculator.*(..))&quot;)</span><br><span class="line"></span><br><span class="line">最精确的查询execution(public int cn.springaop.imple.MyMathCalculator.*(int,int))</span><br><span class="line">最模糊的查询execution(* *.*(..))&#x2F;&#x2F;任意返回值类型 任意包.下任意类(任意方法) 知道就好</span><br><span class="line">&amp;&amp; 两个必须都满足 与</span><br><span class="line">|| 满足任意一个 或</span><br><span class="line">！ 只要不是都记上</span><br></pre></td></tr></table></figure>
+
+<h3 id="抽取可从用的切入点表达式-Pointcut"><a href="#抽取可从用的切入点表达式-Pointcut" class="headerlink" title="抽取可从用的切入点表达式 @Pointcut"></a>抽取可从用的切入点表达式 @Pointcut</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1.随便创建一个没有实现的返回void方法</span><br><span class="line">2.给方法标注上@Pointcut注解</span><br><span class="line"></span><br><span class="line">例: @Pointcut(&quot;execution(* cn.springaop..MyMathCalculator.*(..))&quot;)</span><br><span class="line">    public void hallow()&#123;&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Befor-前置通知"><a href="#Befor-前置通知" class="headerlink" title="@Befor 前置通知"></a>@Befor 前置通知</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;想在方法前运行 写一个切入点</span><br><span class="line"> * 我们可以在通知方法运行的时候 ，拿到目标方法的信息</span><br><span class="line"> * 只需要为通知方法的参数列表写一个参数类型</span><br><span class="line"> * JoinPoint joinPoint 封装了目标方法的详细信息</span><br><span class="line"> * import org.aspectj.lang.JoinPoint; 一定是lan包的</span><br><span class="line">&#x2F;&#x2F;execution(方法签名)</span><br><span class="line"></span><br><span class="line">@Before(&quot;hallow()&quot;)</span><br><span class="line">public static void logStart(JoinPoint joinPoint)&#123;</span><br><span class="line">    &#x2F;&#x2F;获取到目标方法运行时使用的参数</span><br><span class="line">    Object[] args &#x3D; joinPoint.getArgs();</span><br><span class="line">    &#x2F;&#x2F;获取目标的方法名</span><br><span class="line">    Signature signature &#x3D; joinPoint.getSignature();</span><br><span class="line">    String name &#x3D; signature.getName();</span><br><span class="line">    System.out.println(&quot;【LogUtils-前置】【&quot;+name+&quot;】方法开始他用的参数是：&quot;+Arrays.asList(args));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="AfterReturning-返回通知"><a href="#AfterReturning-返回通知" class="headerlink" title="@AfterReturning 返回通知"></a>@AfterReturning 返回通知</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"> * Object result 要告诉Spring返回结果 returning &#x3D; &quot;result&quot;</span><br><span class="line"> </span><br><span class="line">@AfterReturning(value &#x3D; &quot;hallow()&quot;,returning &#x3D; &quot;result&quot;)</span><br><span class="line">&#x2F;&#x2F;在目标方法完成之后执行</span><br><span class="line">public static void logReturn(JoinPoint joinPoint,Object result)&#123;</span><br><span class="line">    Object[] args &#x3D; joinPoint.getArgs();</span><br><span class="line">    Signature signature &#x3D; joinPoint.getSignature();</span><br><span class="line">    String name &#x3D; signature.getName();</span><br><span class="line">    System.out.println(&quot;【LogUtils-返回】【&quot;+name+&quot;】方法执行完成，结果是：&quot;+result);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="AfterThrowing-异常通知"><a href="#AfterThrowing-异常通知" class="headerlink" title="@AfterThrowing 异常通知"></a>@AfterThrowing 异常通知</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;想在目标方法出现异常时候运行</span><br><span class="line">    &#x2F;&#x2F;要告诉Spring那个方法接受异常 throwing &#x3D; &quot;exception&quot;</span><br><span class="line">    &#x2F;&#x2F;Exception exception 异常写大了才能接收全部异常</span><br><span class="line">    @AfterThrowing(value &#x3D; &quot;hallow()&quot;,throwing &#x3D; &quot;exception&quot;)</span><br><span class="line">    public static void logException(JoinPoint joinPoint,Exception exception)&#123;</span><br><span class="line">        Object[] args &#x3D; joinPoint.getArgs();</span><br><span class="line">        Signature signature &#x3D; joinPoint.getSignature();</span><br><span class="line">        String name &#x3D; signature.getName();</span><br><span class="line">        System.out.println(&quot;【LogUtils-异常】【&quot;+name+&quot;】方法执行出现异常，异常信息是：【&quot;+exception+&quot;】&quot;);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="After-后置通知"><a href="#After-后置通知" class="headerlink" title="@After 后置通知"></a>@After 后置通知</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;想在目标方法结束执行</span><br><span class="line">&#x2F;&#x2F;不知道的参数一定要告诉Spring是什么</span><br><span class="line">@After(&quot;hallow()&quot;)</span><br><span class="line">public static void logEnd(JoinPoint joinPoint)&#123;</span><br><span class="line">    Signature signature &#x3D; joinPoint.getSignature();</span><br><span class="line">    String  name &#x3D; signature.getName();</span><br><span class="line">    System.out.println(&quot;【LogUtils-后置】【&quot;+name+&quot;】方法结束！&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Around-环绕通知"><a href="#Around-环绕通知" class="headerlink" title="@Around 环绕通知"></a>@Around 环绕通知</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">环绕通知就是动态代理的简化版</span><br><span class="line"></span><br><span class="line">    @Around(&quot;hallow()&quot;)</span><br><span class="line">    public static Object myAround(ProceedingJoinPoint pjp) throws Throwable &#123;</span><br><span class="line">        Object[] args &#x3D; pjp.getArgs();</span><br><span class="line">        String name &#x3D; pjp.getSignature().getName();</span><br><span class="line">        Object proceed &#x3D; null;</span><br><span class="line">        try &#123;</span><br><span class="line">            &#x2F;&#x2F;就是利用反射推荐目标方法 他就是method.invoke(obj,args)</span><br><span class="line">            &#x2F;&#x2F;@Before</span><br><span class="line">            System.out.println(&quot;【&quot;+name+&quot;】方法开始他用的参数是：&quot;+Arrays.asList(args));</span><br><span class="line">            proceed &#x3D; pjp.proceed(args);</span><br><span class="line">            &#x2F;&#x2F;@AfterReturning</span><br><span class="line">            System.out.println(&quot;【&quot;+name+&quot;】方法执行完成，结果是：&quot;+proceed);</span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            &#x2F;&#x2F;@AfterThrowing</span><br><span class="line">            System.out.println(&quot;【&quot;+name+&quot;】方法执行出现异常，异常信息是：【&quot;+e+&quot;】&quot;);</span><br><span class="line">        &#125;finally &#123;</span><br><span class="line">            &#x2F;&#x2F;@After</span><br><span class="line">            System.out.println(&quot;【&quot;+name+&quot;】方法结束！&quot;);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F;反射调用返回值一定出去</span><br><span class="line">        return proceed;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="普通通知和环绕通知的运行顺序-先进后出"><a href="#普通通知和环绕通知的运行顺序-先进后出" class="headerlink" title="普通通知和环绕通知的运行顺序(先进后出)"></a>普通通知和环绕通知的运行顺序(先进后出)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">【add】方法开始他用的参数是：[2, 1]</span><br><span class="line">【LogUtils-前置】【add】方法开始他用的参数是：[2, 1]</span><br><span class="line">【Validate-前置】【add】方法开始他用的参数是：[2, 1]</span><br><span class="line">【Validate-后置】【add】方法结束！</span><br><span class="line">【Validate-返回】【add】方法执行完成，结果是：3</span><br><span class="line">【add】方法执行完成，结果是：3</span><br><span class="line">【add】方法结束！</span><br><span class="line">【LogUtils-后置】【add】方法结束！</span><br><span class="line">【LogUtils-返回】【add】方法执行完成，结果是：3</span><br></pre></td></tr></table></figure>
+
+<h3 id="AOP-的Application注意事项"><a href="#AOP-的Application注意事项" class="headerlink" title="AOP 的Application注意事项"></a>AOP 的Application注意事项</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">1.从ioc中拿对象 要想用类型查找一定要用他的接口类型 不要用他的本类</span><br><span class="line">Calculator bean_01 &#x3D; iocaop.getBean(Calculator.class);</span><br><span class="line"></span><br><span class="line">2.也可以用本类的id接口 但实例类是接口类</span><br><span class="line">Calculator bean_02 &#x3D; (Calculator) iocaop.getBean(&quot;myMathCalculator&quot;);</span><br><span class="line">bean_02.add(2,1);</span><br><span class="line">System.out.println(bean_02.getClass());</span><br><span class="line"></span><br><span class="line">3.如果没有实现接口就可直接用本类：iocaop.getBean(MyMathCalculator.class);</span><br><span class="line">有接口转接口类型 没接口转本类类型</span><br><span class="line">MyMathCalculator bean_03 &#x3D; (MyMathCalculator) iocaop.getBean(&quot;myMathCalculator&quot;);</span><br><span class="line">MyMathCalculator bean_03 &#x3D; iocaop.getBean(MyMathCalculator.class);</span><br><span class="line">bean_03.add(3,5);</span><br></pre></td></tr></table></figure>
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>多谢大佬<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/godfater.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/05/16/Spring%E6%A1%86%E6%9E%B6AOP%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E9%99%86%EF%BC%89/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/16/Spring%E6%A1%86%E6%9E%B6IOC%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BC%8D)/" class="archive-article-date">
-  	<time datetime="2020-05-16T14:05:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-16</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2020/05/21/Spring%E6%A1%86%E6%9E%B6AOP%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E6%9F%92%EF%BC%89/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Spring框架AOP随笔记录（柒）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/05/16/Spring%E6%A1%86%E6%9E%B6IOC%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BC%8D)/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Spring框架IOC随笔记录（伍)</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/16/Spring%E6%A1%86%E6%9E%B6IOC%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BC%8D)/">Spring框架IOC随笔记录（伍)</a>
-    </h1>
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Spring框架AOP随笔记录（陆）" data-title="Spring框架AOP随笔记录（陆）" data-url="http://yoursite.com/2020/05/16/Spring%E6%A1%86%E6%9E%B6AOP%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E9%99%86%EF%BC%89/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+  
+  
+  
+  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+<script>
+  var cloudTieConfig = {
+    url: "http://yoursite.com/2020/05/16/Spring%E6%A1%86%E6%9E%B6AOP%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E9%99%86%EF%BC%89/", 
+    sourceId: "Spring框架AOP随笔记录（陆）",
+    productKey: "true",
+    target: "cloud-tie-wrapper"
+  };
+</script>
+<script src="//img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/16/Spring%E6%A1%86%E6%9E%B6IOC%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E8%82%86%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2020-05-16T13:24:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/16/Spring%E6%A1%86%E6%9E%B6IOC%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E8%82%86%EF%BC%89/">Spring框架IOC随笔记录（肆）</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/16/Spring%E6%A1%86%E6%9E%B6IOC%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E5%8F%81)/" class="archive-article-date">
-  	<time datetime="2020-05-16T11:38:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/16/Spring%E6%A1%86%E6%9E%B6IOC%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E5%8F%81)/">Spring框架IOC随笔记录（叁)</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/13/Spring%E6%A1%86%E6%9E%B6IOC%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E8%B4%B0%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2020-05-13T15:10:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/13/Spring%E6%A1%86%E6%9E%B6IOC%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E8%B4%B0%EF%BC%89/">Spring框架IOC随笔记录（贰）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/13/Spring%E6%A1%86%E6%9E%B6IOC%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E5%A3%B9)/" class="archive-article-date">
-  	<time datetime="2020-05-13T14:15:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/13/Spring%E6%A1%86%E6%9E%B6IOC%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E5%A3%B9)/">Spring框架IOC随笔记录（壹)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/09/Git-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" class="archive-article-date">
-  	<time datetime="2020-05-09T08:25:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/09/Git-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">Git 常用命令随笔记录</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/09/hello-world/" class="archive-article-date">
-  	<time datetime="2020-05-09T03:35:22.904Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/09/hello-world/">Hello World</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -431,8 +392,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
