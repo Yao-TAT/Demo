@@ -6,11 +6,11 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2020 | Hexo</title>
+  <title>Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="website">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/2020/index.html">
+<meta property="og:url" content="http://yoursite.com/page/2/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:locale" content="en_US">
 <meta property="article:author" content="God Father">
@@ -152,292 +152,163 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Git-常用命令" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/09/Git-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">Git 常用命令随笔记录</a>
+    </h1>
+  
+
+        
+        <a href="/2020/05/09/Git-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" class="archive-article-date">
+  	<time datetime="2020-05-09T08:25:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-09</time>
+</a>
+        
+      </header>
     
-    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="随笔"><a href="#随笔" class="headerlink" title="随笔"></a>随笔</h2><h3 id="创建-repo"><a href="#创建-repo" class="headerlink" title="创建 repo"></a>创建 repo</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git init</span><br></pre></td></tr></table></figure>
+
+<h3 id="查看-repo状态"><a href="#查看-repo状态" class="headerlink" title="查看 repo状态"></a>查看 repo状态</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br></pre></td></tr></table></figure>
+<h3 id="文件增加到缓存区"><a href="#文件增加到缓存区" class="headerlink" title="文件增加到缓存区"></a>文件增加到缓存区</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git add &lt;file&gt; &quot;file(文件名)&quot;</span><br></pre></td></tr></table></figure>
+
+<h3 id="文件从缓存区提交到本地仓库"><a href="#文件从缓存区提交到本地仓库" class="headerlink" title="文件从缓存区提交到本地仓库"></a>文件从缓存区提交到本地仓库</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git commit &lt;file&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="查看本地仓库历史版本记录"><a href="#查看本地仓库历史版本记录" class="headerlink" title="查看本地仓库历史版本记录"></a>查看本地仓库历史版本记录</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git log </span><br><span class="line">git log --prettyoneline</span><br><span class="line">git reflog &lt;推荐&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="调取历史版本"><a href="#调取历史版本" class="headerlink" title="调取历史版本"></a>调取历史版本</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard &lt;hash哈希码&gt;   &#x2F;&#x2F;可前后调取  &lt;推荐&gt;</span><br><span class="line">git reset --hard HEAD^  &#x2F;&#x2F; ^个数调取后面相应的个数 只能调取历史版本</span><br><span class="line">git reset --hard HEAD~n  &#x2F;&#x2F; n(输入回调版本个数)个数调取后面相应的个数 只能调取历史版本</span><br></pre></td></tr></table></figure>
+
+<h3 id="查看当前文件和缓存区文件差异"><a href="#查看当前文件和缓存区文件差异" class="headerlink" title="查看当前文件和缓存区文件差异"></a>查看当前文件和缓存区文件差异</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git diff &lt;file&gt;  &#x2F;&#x2F; &#x2F;HEAD则上一次版本差异</span><br></pre></td></tr></table></figure>
+
+<h3 id="从缓存区移除文件-同时也移除出工作目录"><a href="#从缓存区移除文件-同时也移除出工作目录" class="headerlink" title="从缓存区移除文件,同时也移除出工作目录."></a>从缓存区移除文件,同时也移除出工作目录.</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git rm &lt;file&gt; </span><br><span class="line">rm -rf&#x2F;*  &#x2F;&#x2F;跑路只隔一线代码</span><br></pre></td></tr></table></figure>
+
+<h3 id="分支部分"><a href="#分支部分" class="headerlink" title="分支部分"></a>分支部分</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">git branch &quot;&lt;name&gt;&quot; &#x2F;&#x2F;创建分支</span><br><span class="line"></span><br><span class="line">git branch -v  &#x2F;&#x2F;查看分支</span><br><span class="line"></span><br><span class="line">git branch -d &lt;branch name&gt; &#x2F;&#x2F;删除分支</span><br><span class="line"></span><br><span class="line">git checkout &lt;branch&gt;  &#x2F;&#x2F;切换分支</span><br><span class="line"></span><br><span class="line">git merge &lt;branch&gt;  &#x2F;&#x2F;合并分支</span><br></pre></td></tr></table></figure>
+
+<h3 id="Git-amp-amp-Github-部分"><a href="#Git-amp-amp-Github-部分" class="headerlink" title="Git &amp;&amp; Github 部分"></a>Git &amp;&amp; Github 部分</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">git push origin &lt;branch&gt;  &#x2F;&#x2F;推送分支</span><br><span class="line"></span><br><span class="line">git clone &lt;网页地址&gt;  &#x2F;&#x2F;克隆</span><br><span class="line"></span><br><span class="line">git remote -v  &#x2F;&#x2F;获取网页地址</span><br><span class="line"></span><br><span class="line">git push origin &lt;branch&gt;  &#x2F;&#x2F;上传</span><br><span class="line"></span><br><span class="line">git pull origin &lt;branch&gt;  &#x2F;&#x2F;取回 pull &#x3D; fetch + merge 项目不复杂时 &lt;推荐&gt;</span><br><span class="line"></span><br><span class="line">git fetch origin &lt;branch&gt;  &#x2F;&#x2F;抓取 checkout origin &lt;branch&gt; 查看抓取文件</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/05/09/Git-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-        <div class="archives">
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/06/20/SpringBoot%E9%AB%98%E7%BA%A7%E6%B6%88%E6%81%AF/" class="archive-article-date">
-  	<time datetime="2020-06-20T05:50:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-20</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
     <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/06/20/SpringBoot%E9%AB%98%E7%BA%A7%E6%B6%88%E6%81%AF/">SpringBoot高级消息</a>
+      <a class="article-title" href="/2020/05/09/hello-world/">Hello World</a>
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/06/20/Docker%E9%85%8D%E7%BD%AE/" class="archive-article-date">
-  	<time datetime="2020-06-20T05:34:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-20</time>
+        
+        <a href="/2020/05/09/hello-world/" class="archive-article-date">
+  	<time datetime="2020-05-09T03:35:22.904Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-09</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/06/20/Docker%E9%85%8D%E7%BD%AE/">Docker配置</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
 
-        <div class="article-info info-on-right">
-          
-          
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/05/09/hello-world/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/21/Spring%E6%A1%86%E6%9E%B6%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E6%8D%8C%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2020-05-21T09:52:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-21</time>
-</a>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/21/Spring%E6%A1%86%E6%9E%B6%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E6%8D%8C%EF%BC%89/">Spring框架AOP随笔记录（捌）</a>
-    </h1>
-  
+        
+        
+    </div>
+</aside>
 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/21/Spring%E6%A1%86%E6%9E%B6AOP%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E6%9F%92%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2020-05-21T08:10:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/21/Spring%E6%A1%86%E6%9E%B6AOP%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E6%9F%92%EF%BC%89/">Spring框架AOP随笔记录（柒）</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/16/Spring%E6%A1%86%E6%9E%B6AOP%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E9%99%86%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2020-05-16T14:44:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/16/Spring%E6%A1%86%E6%9E%B6AOP%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E9%99%86%EF%BC%89/">Spring框架AOP随笔记录（陆）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/16/Spring%E6%A1%86%E6%9E%B6IOC%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BC%8D)/" class="archive-article-date">
-  	<time datetime="2020-05-16T14:05:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/16/Spring%E6%A1%86%E6%9E%B6IOC%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BC%8D)/">Spring框架IOC随笔记录（伍)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/16/Spring%E6%A1%86%E6%9E%B6IOC%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E8%82%86%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2020-05-16T13:24:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/16/Spring%E6%A1%86%E6%9E%B6IOC%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E8%82%86%EF%BC%89/">Spring框架IOC随笔记录（肆）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/16/Spring%E6%A1%86%E6%9E%B6IOC%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E5%8F%81)/" class="archive-article-date">
-  	<time datetime="2020-05-16T11:38:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/16/Spring%E6%A1%86%E6%9E%B6IOC%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E5%8F%81)/">Spring框架IOC随笔记录（叁)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/13/Spring%E6%A1%86%E6%9E%B6IOC%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E8%B4%B0%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2020-05-13T15:10:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/13/Spring%E6%A1%86%E6%9E%B6IOC%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E8%B4%B0%EF%BC%89/">Spring框架IOC随笔记录（贰）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/13/Spring%E6%A1%86%E6%9E%B6IOC%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E5%A3%B9)/" class="archive-article-date">
-  	<time datetime="2020-05-13T14:15:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/13/Spring%E6%A1%86%E6%9E%B6IOC%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E5%A3%B9)/">Spring框架IOC随笔记录（壹)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
-  
-
-    
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/2020/page/2/">2</a><a class="extend next" rel="next" href="/archives/2020/page/2/">Next &amp;raquo;</a>
+      <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
     </nav>
   
 
@@ -461,9 +332,9 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: false,
+		isHome: true,
 		isPost: false,
-		isArchive: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

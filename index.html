@@ -152,6 +152,155 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-SpringBoot高级消息" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/20/SpringBoot%E9%AB%98%E7%BA%A7%E6%B6%88%E6%81%AF/">SpringBoot高级消息</a>
+    </h1>
+  
+
+        
+        <a href="/2020/06/20/SpringBoot%E9%AB%98%E7%BA%A7%E6%B6%88%E6%81%AF/" class="archive-article-date">
+  	<time datetime="2020-06-20T05:50:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-Linux开启rabbitmq镜像"><a href="#1-Linux开启rabbitmq镜像" class="headerlink" title="1.Linux开启rabbitmq镜像"></a>1.Linux开启rabbitmq镜像</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1.配置开启好docker</span><br><span class="line">2.docker run -d -p 5672:5672 -p 15672:15672 --name Myrabbitmq rabbitmq:xxxx </span><br><span class="line">3.对外开启端口</span><br><span class="line">4.外部主机访问 ip:端口号 http:&#x2F;&#x2F;192.168.92.135:15672&#x2F;</span><br><span class="line">5.默认账号密码 guest</span><br><span class="line">6.Exchanges 交换器 Queues 消息队列 自己手动设置</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-idea-springboot配置消息队列"><a href="#2-idea-springboot配置消息队列" class="headerlink" title="2.idea springboot配置消息队列"></a>2.idea springboot配置消息队列</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">1.Application配置连接</span><br><span class="line">spring:</span><br><span class="line">  rabbitmq:</span><br><span class="line">    host: 192.168.92.135</span><br><span class="line">    username: guest</span><br><span class="line">    password: guest</span><br><span class="line">#    port: 5672</span><br><span class="line"></span><br><span class="line">2.Application类配置</span><br><span class="line">&#x2F;**</span><br><span class="line"> * 自动装配</span><br><span class="line"> * 1.RabbitAutoConfiguration</span><br><span class="line"> * 2.有自动配置的连接工厂ConnectionFactory</span><br><span class="line"> * 3.RabbitProperties 封装了RabbitMQ的配置</span><br><span class="line"> * 4.RabbitTemplate 给RabbitMQ发送和接受消息</span><br><span class="line"> * 5.AmqpAdmin Rabbit系统管理功能组件</span><br><span class="line"> * 6.开启基于注解的EnableRabbit</span><br><span class="line"> *&#x2F;</span><br><span class="line"></span><br><span class="line">@EnableRabbit</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-消息发送和接收"><a href="#3-消息发送和接收" class="headerlink" title="3.消息发送和接收"></a>3.消息发送和接收</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1.自动装配</span><br><span class="line">import org.springframework.amqp.rabbit.core.RabbitTemplate;</span><br><span class="line">    @Autowired</span><br><span class="line">    RabbitTemplate rabbitTemplate;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-点播"><a href="#2-点播" class="headerlink" title="2.点播"></a>2.点播</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">    @Test</span><br><span class="line">    void contextLoads() &#123;</span><br><span class="line">        &#x2F;&#x2F;Message需要自己构造</span><br><span class="line">&#x2F;&#x2F;        rabbitTemplate.send(exchange,routeKey,message);</span><br><span class="line">        &#x2F;&#x2F;objec 默认当成消息体 只需要传入要发送的对象 自动序列化 保存发送给rabbitmq</span><br><span class="line">&#x2F;&#x2F;        rabbitTemplate.convertAndSend(exchange,routeKey,object);</span><br><span class="line">        HashMap&lt;String, Object&gt; map &#x3D; new HashMap&lt;&gt;();</span><br><span class="line">        map.put(&quot;msg&quot;,&quot;套你猴子的&quot;);</span><br><span class="line">        map.put(&quot;date&quot;, Arrays.asList(&quot;hellow&quot;,123,true));</span><br><span class="line">        rabbitTemplate.convertAndSend(&quot;exchange.direct&quot;,&quot;yang.news&quot;,new Book(&quot;盖世双谐&quot;,&quot;三天粮绝&quot;));</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-广播"><a href="#3-广播" class="headerlink" title="3.广播"></a>3.广播</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">@Test</span><br><span class="line">public void sendMsg()&#123;</span><br><span class="line">    rabbitTemplate.convertAndSend(&quot;exchange.fanout&quot;,&quot;&quot;,new Book(&quot;我命由我不用填&quot;,&quot;AABB&quot;));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-接收"><a href="#4-接收" class="headerlink" title="4.接收"></a>4.接收</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public void receive()&#123;</span><br><span class="line">    Object o &#x3D; rabbitTemplate.receiveAndConvert(&quot;yang.news&quot;);</span><br><span class="line">    System.out.println(o.getClass());</span><br><span class="line">    System.out.println(o);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-发送内容格式转化为json格式"><a href="#5-发送内容格式转化为json格式" class="headerlink" title="5.发送内容格式转化为json格式"></a>5.发送内容格式转化为json格式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">创建配置类导入容器中  注解别忘写</span><br><span class="line"></span><br><span class="line">import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;</span><br><span class="line">import org.springframework.amqp.support.converter.MessageConverter;</span><br><span class="line">import org.springframework.context.annotation.Bean;</span><br><span class="line">import org.springframework.context.annotation.Configuration;</span><br><span class="line"></span><br><span class="line">@Configuration</span><br><span class="line">public class MyAMQPConfig &#123;</span><br><span class="line"></span><br><span class="line">    @Bean</span><br><span class="line">    public MessageConverter messageConverter()&#123;</span><br><span class="line">        return new Jackson2JsonMessageConverter();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="配置接收监听器"><a href="#配置接收监听器" class="headerlink" title="配置接收监听器"></a>配置接收监听器</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">写一个Service类 一定要开启基于注解的EnableRabbit</span><br><span class="line">自动接受完 消息队列里的也会自动删除</span><br><span class="line"></span><br><span class="line">import com.yaang.rabbitmq.bean.Book;</span><br><span class="line">import org.springframework.amqp.core.Message;</span><br><span class="line">import org.springframework.amqp.rabbit.annotation.RabbitListener;</span><br><span class="line">import org.springframework.stereotype.Service;</span><br><span class="line"></span><br><span class="line">@Service</span><br><span class="line">public class BookService &#123;</span><br><span class="line"></span><br><span class="line">    @RabbitListener(queues &#x3D; &quot;yang.news&quot;)</span><br><span class="line">    public void receive(Book book)&#123;</span><br><span class="line">        System.out.println(&quot;接收消息&quot;+book);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @RabbitListener(queues &#x3D; &quot;yang&quot;)</span><br><span class="line">    public void receive_02(Message message)&#123;</span><br><span class="line">        System.out.println(message.getBody());</span><br><span class="line">        System.out.println(message.getMessageProperties());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="springboot里创建交换器-消息队列-绑定规则"><a href="#springboot里创建交换器-消息队列-绑定规则" class="headerlink" title="springboot里创建交换器 消息队列 绑定规则"></a>springboot里创建交换器 消息队列 绑定规则</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">1.包别导错了</span><br><span class="line">2.内部参数别赋错了</span><br><span class="line">3.amqpAdmin里的方法clear一般创建 delt删除自己试下</span><br><span class="line">3.还是建议浏览器里自己弄 springboot弄太麻烦了</span><br><span class="line"></span><br><span class="line">import org.springframework.amqp.core.AmqpAdmin;</span><br><span class="line">import org.springframework.amqp.core.Binding;</span><br><span class="line">import org.springframework.amqp.core.DirectExchange;</span><br><span class="line">import org.springframework.amqp.core.Queue;</span><br><span class="line"></span><br><span class="line">   @Autowired</span><br><span class="line">    AmqpAdmin amqpAdmin;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;创建转换器</span><br><span class="line">    @Test</span><br><span class="line">    public void  createExchange()&#123;</span><br><span class="line">        amqpAdmin.declareExchange(new DirectExchange(&quot;amqpadmin.exchange&quot;));</span><br><span class="line">        System.out.println(&quot;创建完成&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;创建队列</span><br><span class="line">    @Test</span><br><span class="line">    public void  createQueue()&#123;</span><br><span class="line">        amqpAdmin.declareQueue(new Queue(&quot;amqpadmin.queue&quot;,true));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;创建绑定规则</span><br><span class="line">    @Test</span><br><span class="line">    public void  createBinding()&#123;</span><br><span class="line">        amqpAdmin.declareBinding(new Binding(&quot;amqpadmin.queue&quot;,Binding.DestinationType.QUEUE,&quot;amqpadmin.exchange&quot;,&quot;amqp.haha&quot;,null));</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/06/20/SpringBoot%E9%AB%98%E7%BA%A7%E6%B6%88%E6%81%AF/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Docker配置" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/20/Docker%E9%85%8D%E7%BD%AE/">Docker配置</a>
+    </h1>
+  
+
+        
+        <a href="/2020/06/20/Docker%E9%85%8D%E7%BD%AE/" class="archive-article-date">
+  	<time datetime="2020-06-20T05:34:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Docker配置"><a href="#Docker配置" class="headerlink" title="Docker配置"></a>Docker配置</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">1.配置阿里云</span><br><span class="line"> vim &#x2F;etc&#x2F;docker&#x2F;daemon.json</span><br><span class="line"></span><br><span class="line">2. 修改内容</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">&quot;registry-mirrors&quot;: [&quot;https:&#x2F;&#x2F;docker.mirrors.ustc.edu.cn&quot;]</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">3. 程序重新加载： systemctl daemon-reload</span><br><span class="line">4. 重新启动docker： systemctl restart docker</span><br></pre></td></tr></table></figure>
+
+<p>2.开启容器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker run -d &#x2F;&#x2F;后台运行 -p 主机&#x2F;默认端口号 --name 容器名 镜像文件</span><br><span class="line">docker ps -aq</span><br><span class="line">docker 容器名 start 启动</span><br></pre></td></tr></table></figure>
+
+<p>3.对外开发端口号</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">1.查看防火墙状态</span><br><span class="line">         查看防火墙状态 systemctl status firewalld</span><br><span class="line">         开启防火墙 systemctl start firewalld  </span><br><span class="line">         关闭防火墙 systemctl stop firewalld</span><br><span class="line">         开启防火墙 service firewalld start </span><br><span class="line">         若遇到无法开启</span><br><span class="line">         先用：systemctl unmask firewalld.service </span><br><span class="line">         然后：systemctl start firewalld.service</span><br><span class="line"></span><br><span class="line">2.查看对外开放的端口状态</span><br><span class="line">         查询已开放的端口 netstat  -ntulp | grep 端口号：可以具体查看某一个端口号</span><br><span class="line">         查询指定端口是否已开 firewall-cmd --query-port&#x3D;666&#x2F;tcp</span><br><span class="line">           提示 yes，表示开启；no表示未开启。</span><br><span class="line"></span><br><span class="line">3.对外开发端口</span><br><span class="line"></span><br><span class="line">       查看想开的端口是否已开：firewall-cmd --query-port&#x3D;6379&#x2F;tcp</span><br><span class="line">       添加指定需要开放的端口：firewall-cmd --add-port&#x3D;123&#x2F;tcp --permanent</span><br><span class="line">       重载入添加的端口：firewall-cmd --reload</span><br><span class="line">       查询指定端口是否开启成功：firewall-cmd --query-port&#x3D;123&#x2F;tcp</span><br><span class="line">       移除指定端口：firewall-cmd --permanent --remove-port&#x3D;123&#x2F;tcp</span><br></pre></td></tr></table></figure>
+
+<p>4.主机外部访问</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ifconfig 查看虚拟机ip地址</span><br><span class="line">外部访问 ip地址:端口号  例：http:&#x2F;&#x2F;192.168.92.135:15672&#x2F;</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/06/20/Docker%E9%85%8D%E7%BD%AE/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Spring框架事务管理随笔记录（捌）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -714,160 +863,10 @@
 
 
   
-    <article id="post-Git-常用命令" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/09/Git-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">Git 常用命令随笔记录</a>
-    </h1>
-  
-
-        
-        <a href="/2020/05/09/Git-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" class="archive-article-date">
-  	<time datetime="2020-05-09T08:25:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="随笔"><a href="#随笔" class="headerlink" title="随笔"></a>随笔</h2><h3 id="创建-repo"><a href="#创建-repo" class="headerlink" title="创建 repo"></a>创建 repo</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git init</span><br></pre></td></tr></table></figure>
-
-<h3 id="查看-repo状态"><a href="#查看-repo状态" class="headerlink" title="查看 repo状态"></a>查看 repo状态</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br></pre></td></tr></table></figure>
-<h3 id="文件增加到缓存区"><a href="#文件增加到缓存区" class="headerlink" title="文件增加到缓存区"></a>文件增加到缓存区</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git add &lt;file&gt; &quot;file(文件名)&quot;</span><br></pre></td></tr></table></figure>
-
-<h3 id="文件从缓存区提交到本地仓库"><a href="#文件从缓存区提交到本地仓库" class="headerlink" title="文件从缓存区提交到本地仓库"></a>文件从缓存区提交到本地仓库</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git commit &lt;file&gt;</span><br></pre></td></tr></table></figure>
-
-<h3 id="查看本地仓库历史版本记录"><a href="#查看本地仓库历史版本记录" class="headerlink" title="查看本地仓库历史版本记录"></a>查看本地仓库历史版本记录</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git log </span><br><span class="line">git log --prettyoneline</span><br><span class="line">git reflog &lt;推荐&gt;</span><br></pre></td></tr></table></figure>
-
-<h3 id="调取历史版本"><a href="#调取历史版本" class="headerlink" title="调取历史版本"></a>调取历史版本</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard &lt;hash哈希码&gt;   &#x2F;&#x2F;可前后调取  &lt;推荐&gt;</span><br><span class="line">git reset --hard HEAD^  &#x2F;&#x2F; ^个数调取后面相应的个数 只能调取历史版本</span><br><span class="line">git reset --hard HEAD~n  &#x2F;&#x2F; n(输入回调版本个数)个数调取后面相应的个数 只能调取历史版本</span><br></pre></td></tr></table></figure>
-
-<h3 id="查看当前文件和缓存区文件差异"><a href="#查看当前文件和缓存区文件差异" class="headerlink" title="查看当前文件和缓存区文件差异"></a>查看当前文件和缓存区文件差异</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git diff &lt;file&gt;  &#x2F;&#x2F; &#x2F;HEAD则上一次版本差异</span><br></pre></td></tr></table></figure>
-
-<h3 id="从缓存区移除文件-同时也移除出工作目录"><a href="#从缓存区移除文件-同时也移除出工作目录" class="headerlink" title="从缓存区移除文件,同时也移除出工作目录."></a>从缓存区移除文件,同时也移除出工作目录.</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git rm &lt;file&gt; </span><br><span class="line">rm -rf&#x2F;*  &#x2F;&#x2F;跑路只隔一线代码</span><br></pre></td></tr></table></figure>
-
-<h3 id="分支部分"><a href="#分支部分" class="headerlink" title="分支部分"></a>分支部分</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">git branch &quot;&lt;name&gt;&quot; &#x2F;&#x2F;创建分支</span><br><span class="line"></span><br><span class="line">git branch -v  &#x2F;&#x2F;查看分支</span><br><span class="line"></span><br><span class="line">git branch -d &lt;branch name&gt; &#x2F;&#x2F;删除分支</span><br><span class="line"></span><br><span class="line">git checkout &lt;branch&gt;  &#x2F;&#x2F;切换分支</span><br><span class="line"></span><br><span class="line">git merge &lt;branch&gt;  &#x2F;&#x2F;合并分支</span><br></pre></td></tr></table></figure>
-
-<h3 id="Git-amp-amp-Github-部分"><a href="#Git-amp-amp-Github-部分" class="headerlink" title="Git &amp;&amp; Github 部分"></a>Git &amp;&amp; Github 部分</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">git push origin &lt;branch&gt;  &#x2F;&#x2F;推送分支</span><br><span class="line"></span><br><span class="line">git clone &lt;网页地址&gt;  &#x2F;&#x2F;克隆</span><br><span class="line"></span><br><span class="line">git remote -v  &#x2F;&#x2F;获取网页地址</span><br><span class="line"></span><br><span class="line">git push origin &lt;branch&gt;  &#x2F;&#x2F;上传</span><br><span class="line"></span><br><span class="line">git pull origin &lt;branch&gt;  &#x2F;&#x2F;取回 pull &#x3D; fetch + merge 项目不复杂时 &lt;推荐&gt;</span><br><span class="line"></span><br><span class="line">git fetch origin &lt;branch&gt;  &#x2F;&#x2F;抓取 checkout origin &lt;branch&gt; 查看抓取文件</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/05/09/Git-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/09/hello-world/">Hello World</a>
-    </h1>
-  
-
-        
-        <a href="/2020/05/09/hello-world/" class="archive-article-date">
-  	<time datetime="2020-05-09T03:35:22.904Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/05/09/hello-world/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+    </nav>
   
 
 

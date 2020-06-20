@@ -6,13 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2020 | Hexo</title>
+  <title>SpringBoot高级消息 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/2020/index.html">
+  <meta name="description" content="1.Linux开启rabbitmq镜像1234561.配置开启好docker2.docker run -d -p 5672:5672 -p 15672:15672 --name Myrabbitmq rabbitmq:xxxx 3.对外开启端口4.外部主机访问 ip:端口号 http:&#x2F;&#x2F;192.168.92.135:15672&#x2F;5.默认账号密码 guest6.Exc">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringBoot高级消息">
+<meta property="og:url" content="http://yoursite.com/2020/06/20/SpringBoot%E9%AB%98%E7%BA%A7%E6%B6%88%E6%81%AF/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="1.Linux开启rabbitmq镜像1234561.配置开启好docker2.docker run -d -p 5672:5672 -p 15672:15672 --name Myrabbitmq rabbitmq:xxxx 3.对外开启端口4.外部主机访问 ip:端口号 http:&#x2F;&#x2F;192.168.92.135:15672&#x2F;5.默认账号密码 guest6.Exc">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-06-20T05:50:12.000Z">
+<meta property="article:modified_time" content="2020-06-20T06:19:32.710Z">
 <meta property="article:author" content="God Father">
 <meta name="twitter:card" content="summary">
   
@@ -150,295 +154,206 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-SpringBoot高级消息" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      SpringBoot高级消息
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/06/20/SpringBoot%E9%AB%98%E7%BA%A7%E6%B6%88%E6%81%AF/" class="archive-article-date">
+
+        
+        <a href="/2020/06/20/SpringBoot%E9%AB%98%E7%BA%A7%E6%B6%88%E6%81%AF/" class="archive-article-date">
   	<time datetime="2020-06-20T05:50:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-20</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/06/20/SpringBoot%E9%AB%98%E7%BA%A7%E6%B6%88%E6%81%AF/">SpringBoot高级消息</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-Linux开启rabbitmq镜像"><a href="#1-Linux开启rabbitmq镜像" class="headerlink" title="1.Linux开启rabbitmq镜像"></a>1.Linux开启rabbitmq镜像</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1.配置开启好docker</span><br><span class="line">2.docker run -d -p 5672:5672 -p 15672:15672 --name Myrabbitmq rabbitmq:xxxx </span><br><span class="line">3.对外开启端口</span><br><span class="line">4.外部主机访问 ip:端口号 http:&#x2F;&#x2F;192.168.92.135:15672&#x2F;</span><br><span class="line">5.默认账号密码 guest</span><br><span class="line">6.Exchanges 交换器 Queues 消息队列 自己手动设置</span><br></pre></td></tr></table></figure>
 
-        <div class="article-info info-on-right">
-          
-          
+<h2 id="2-idea-springboot配置消息队列"><a href="#2-idea-springboot配置消息队列" class="headerlink" title="2.idea springboot配置消息队列"></a>2.idea springboot配置消息队列</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">1.Application配置连接</span><br><span class="line">spring:</span><br><span class="line">  rabbitmq:</span><br><span class="line">    host: 192.168.92.135</span><br><span class="line">    username: guest</span><br><span class="line">    password: guest</span><br><span class="line">#    port: 5672</span><br><span class="line"></span><br><span class="line">2.Application类配置</span><br><span class="line">&#x2F;**</span><br><span class="line"> * 自动装配</span><br><span class="line"> * 1.RabbitAutoConfiguration</span><br><span class="line"> * 2.有自动配置的连接工厂ConnectionFactory</span><br><span class="line"> * 3.RabbitProperties 封装了RabbitMQ的配置</span><br><span class="line"> * 4.RabbitTemplate 给RabbitMQ发送和接受消息</span><br><span class="line"> * 5.AmqpAdmin Rabbit系统管理功能组件</span><br><span class="line"> * 6.开启基于注解的EnableRabbit</span><br><span class="line"> *&#x2F;</span><br><span class="line"></span><br><span class="line">@EnableRabbit</span><br></pre></td></tr></table></figure>
 
+<h2 id="3-消息发送和接收"><a href="#3-消息发送和接收" class="headerlink" title="3.消息发送和接收"></a>3.消息发送和接收</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1.自动装配</span><br><span class="line">import org.springframework.amqp.rabbit.core.RabbitTemplate;</span><br><span class="line">    @Autowired</span><br><span class="line">    RabbitTemplate rabbitTemplate;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-点播"><a href="#2-点播" class="headerlink" title="2.点播"></a>2.点播</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">    @Test</span><br><span class="line">    void contextLoads() &#123;</span><br><span class="line">        &#x2F;&#x2F;Message需要自己构造</span><br><span class="line">&#x2F;&#x2F;        rabbitTemplate.send(exchange,routeKey,message);</span><br><span class="line">        &#x2F;&#x2F;objec 默认当成消息体 只需要传入要发送的对象 自动序列化 保存发送给rabbitmq</span><br><span class="line">&#x2F;&#x2F;        rabbitTemplate.convertAndSend(exchange,routeKey,object);</span><br><span class="line">        HashMap&lt;String, Object&gt; map &#x3D; new HashMap&lt;&gt;();</span><br><span class="line">        map.put(&quot;msg&quot;,&quot;套你猴子的&quot;);</span><br><span class="line">        map.put(&quot;date&quot;, Arrays.asList(&quot;hellow&quot;,123,true));</span><br><span class="line">        rabbitTemplate.convertAndSend(&quot;exchange.direct&quot;,&quot;yang.news&quot;,new Book(&quot;盖世双谐&quot;,&quot;三天粮绝&quot;));</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-广播"><a href="#3-广播" class="headerlink" title="3.广播"></a>3.广播</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">@Test</span><br><span class="line">public void sendMsg()&#123;</span><br><span class="line">    rabbitTemplate.convertAndSend(&quot;exchange.fanout&quot;,&quot;&quot;,new Book(&quot;我命由我不用填&quot;,&quot;AABB&quot;));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-接收"><a href="#4-接收" class="headerlink" title="4.接收"></a>4.接收</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public void receive()&#123;</span><br><span class="line">    Object o &#x3D; rabbitTemplate.receiveAndConvert(&quot;yang.news&quot;);</span><br><span class="line">    System.out.println(o.getClass());</span><br><span class="line">    System.out.println(o);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-发送内容格式转化为json格式"><a href="#5-发送内容格式转化为json格式" class="headerlink" title="5.发送内容格式转化为json格式"></a>5.发送内容格式转化为json格式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">创建配置类导入容器中  注解别忘写</span><br><span class="line"></span><br><span class="line">import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;</span><br><span class="line">import org.springframework.amqp.support.converter.MessageConverter;</span><br><span class="line">import org.springframework.context.annotation.Bean;</span><br><span class="line">import org.springframework.context.annotation.Configuration;</span><br><span class="line"></span><br><span class="line">@Configuration</span><br><span class="line">public class MyAMQPConfig &#123;</span><br><span class="line"></span><br><span class="line">    @Bean</span><br><span class="line">    public MessageConverter messageConverter()&#123;</span><br><span class="line">        return new Jackson2JsonMessageConverter();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="配置接收监听器"><a href="#配置接收监听器" class="headerlink" title="配置接收监听器"></a>配置接收监听器</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">写一个Service类 一定要开启基于注解的EnableRabbit</span><br><span class="line">自动接受完 消息队列里的也会自动删除</span><br><span class="line"></span><br><span class="line">import com.yaang.rabbitmq.bean.Book;</span><br><span class="line">import org.springframework.amqp.core.Message;</span><br><span class="line">import org.springframework.amqp.rabbit.annotation.RabbitListener;</span><br><span class="line">import org.springframework.stereotype.Service;</span><br><span class="line"></span><br><span class="line">@Service</span><br><span class="line">public class BookService &#123;</span><br><span class="line"></span><br><span class="line">    @RabbitListener(queues &#x3D; &quot;yang.news&quot;)</span><br><span class="line">    public void receive(Book book)&#123;</span><br><span class="line">        System.out.println(&quot;接收消息&quot;+book);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @RabbitListener(queues &#x3D; &quot;yang&quot;)</span><br><span class="line">    public void receive_02(Message message)&#123;</span><br><span class="line">        System.out.println(message.getBody());</span><br><span class="line">        System.out.println(message.getMessageProperties());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="springboot里创建交换器-消息队列-绑定规则"><a href="#springboot里创建交换器-消息队列-绑定规则" class="headerlink" title="springboot里创建交换器 消息队列 绑定规则"></a>springboot里创建交换器 消息队列 绑定规则</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">1.包别导错了</span><br><span class="line">2.内部参数别赋错了</span><br><span class="line">3.amqpAdmin里的方法clear一般创建 delt删除自己试下</span><br><span class="line">3.还是建议浏览器里自己弄 springboot弄太麻烦了</span><br><span class="line"></span><br><span class="line">import org.springframework.amqp.core.AmqpAdmin;</span><br><span class="line">import org.springframework.amqp.core.Binding;</span><br><span class="line">import org.springframework.amqp.core.DirectExchange;</span><br><span class="line">import org.springframework.amqp.core.Queue;</span><br><span class="line"></span><br><span class="line">   @Autowired</span><br><span class="line">    AmqpAdmin amqpAdmin;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;创建转换器</span><br><span class="line">    @Test</span><br><span class="line">    public void  createExchange()&#123;</span><br><span class="line">        amqpAdmin.declareExchange(new DirectExchange(&quot;amqpadmin.exchange&quot;));</span><br><span class="line">        System.out.println(&quot;创建完成&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;创建队列</span><br><span class="line">    @Test</span><br><span class="line">    public void  createQueue()&#123;</span><br><span class="line">        amqpAdmin.declareQueue(new Queue(&quot;amqpadmin.queue&quot;,true));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;创建绑定规则</span><br><span class="line">    @Test</span><br><span class="line">    public void  createBinding()&#123;</span><br><span class="line">        amqpAdmin.declareBinding(new Binding(&quot;amqpadmin.queue&quot;,Binding.DestinationType.QUEUE,&quot;amqpadmin.exchange&quot;,&quot;amqp.haha&quot;,null));</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>多谢大佬<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/godfater.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/06/20/SpringBoot%E9%AB%98%E7%BA%A7%E6%B6%88%E6%81%AF/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/06/20/Docker%E9%85%8D%E7%BD%AE/" class="archive-article-date">
-  	<time datetime="2020-06-20T05:34:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-20</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2020/06/20/Docker%E9%85%8D%E7%BD%AE/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Docker配置</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/06/20/Docker%E9%85%8D%E7%BD%AE/">Docker配置</a>
-    </h1>
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="SpringBoot高级消息" data-title="SpringBoot高级消息" data-url="http://yoursite.com/2020/06/20/SpringBoot%E9%AB%98%E7%BA%A7%E6%B6%88%E6%81%AF/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+  
+  
+  
+  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+<script>
+  var cloudTieConfig = {
+    url: "http://yoursite.com/2020/06/20/SpringBoot%E9%AB%98%E7%BA%A7%E6%B6%88%E6%81%AF/", 
+    sourceId: "SpringBoot高级消息",
+    productKey: "true",
+    target: "cloud-tie-wrapper"
+  };
+</script>
+<script src="//img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/21/Spring%E6%A1%86%E6%9E%B6%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E6%8D%8C%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2020-05-21T09:52:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/21/Spring%E6%A1%86%E6%9E%B6%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E6%8D%8C%EF%BC%89/">Spring框架AOP随笔记录（捌）</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/21/Spring%E6%A1%86%E6%9E%B6AOP%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E6%9F%92%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2020-05-21T08:10:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/21/Spring%E6%A1%86%E6%9E%B6AOP%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E6%9F%92%EF%BC%89/">Spring框架AOP随笔记录（柒）</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/16/Spring%E6%A1%86%E6%9E%B6AOP%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E9%99%86%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2020-05-16T14:44:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/16/Spring%E6%A1%86%E6%9E%B6AOP%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E9%99%86%EF%BC%89/">Spring框架AOP随笔记录（陆）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/16/Spring%E6%A1%86%E6%9E%B6IOC%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BC%8D)/" class="archive-article-date">
-  	<time datetime="2020-05-16T14:05:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/16/Spring%E6%A1%86%E6%9E%B6IOC%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BC%8D)/">Spring框架IOC随笔记录（伍)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/16/Spring%E6%A1%86%E6%9E%B6IOC%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E8%82%86%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2020-05-16T13:24:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/16/Spring%E6%A1%86%E6%9E%B6IOC%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E8%82%86%EF%BC%89/">Spring框架IOC随笔记录（肆）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/16/Spring%E6%A1%86%E6%9E%B6IOC%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E5%8F%81)/" class="archive-article-date">
-  	<time datetime="2020-05-16T11:38:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/16/Spring%E6%A1%86%E6%9E%B6IOC%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E5%8F%81)/">Spring框架IOC随笔记录（叁)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/13/Spring%E6%A1%86%E6%9E%B6IOC%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E8%B4%B0%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2020-05-13T15:10:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/13/Spring%E6%A1%86%E6%9E%B6IOC%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E8%B4%B0%EF%BC%89/">Spring框架IOC随笔记录（贰）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/13/Spring%E6%A1%86%E6%9E%B6IOC%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E5%A3%B9)/" class="archive-article-date">
-  	<time datetime="2020-05-13T14:15:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/13/Spring%E6%A1%86%E6%9E%B6IOC%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%EF%BC%88%E5%A3%B9)/">Spring框架IOC随笔记录（壹)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/2020/page/2/">2</a><a class="extend next" rel="next" href="/archives/2020/page/2/">Next &amp;raquo;</a>
-    </nav>
   
 
 
@@ -462,8 +377,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
